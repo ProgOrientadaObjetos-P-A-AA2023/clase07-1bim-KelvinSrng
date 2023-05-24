@@ -10,6 +10,7 @@ public class Calificacion{
     private double nota;
     private String nombreMateria;
     private Profesor profesor;
+    private double promedio;
 
     public Calificacion(double n, String nombre) {
         nota = n;
@@ -28,7 +29,9 @@ public class Calificacion{
     public void establecerProfesor(Profesor n) {
         profesor = n;
     }
-
+    
+    
+    
     public double obtenerNota() {
         return nota;
     }

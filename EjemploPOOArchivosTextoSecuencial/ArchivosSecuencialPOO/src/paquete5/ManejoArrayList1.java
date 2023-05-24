@@ -27,6 +27,13 @@ public class ManejoArrayList1 {
                     profesores[i].obtenerTipo());
         }
         
+        /* Es igual al for anterior
+        for (int i = 0; i < profesores.length; i++) {
+            Profesor p1 = profesores[i];
+            System.out.printf("%s - %s\n", p1.obtenerNombre(),
+                    p1.obtenerTipo());
+        }*/
+        
         System.out.println("-----------------------------");
         
         // ArrayList
@@ -38,6 +45,13 @@ public class ManejoArrayList1 {
             System.out.printf("%s - %s\n", profesores2.get(i).obtenerNombre(),
                     profesores2.get(i).obtenerTipo());
         }
+        
+        /* Es igual al for anterior
+        for (int i = 0; i < profesores2.size(); i++) {
+            Profesor p1 = profesores2.get(i);
+            System.out.printf("%s - %s\n", p1.obtenerNombre(),
+                    p1.obtenerTipo());
+        }*/
         
         System.out.println("-----------------------------");
         
