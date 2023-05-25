@@ -27,7 +27,7 @@ public class ArchivoLectura {
         File f = new File(rutaArchivo); // data/profesores.txt
         if (f.exists()) {
             try {
-                entrada = new Scanner(new File(rutaArchivo));
+                entrada = new Scanner(new File(rutaArchivo)); // Lee informacion del archivo
                 // entrada = new Scanner(System.in);
                 // entrada = new Scanner(f);
             } // fin de try

@@ -6,7 +6,7 @@
 package paquete3;
 
 import paquete1.Calificacion;
-import paquete1.Profesor;
+import paquete1.Ciuadad;
 
 public class Ejecutor {
 
@@ -19,9 +19,9 @@ public class Ejecutor {
         Calificacion c2 = new Calificacion(9, "Lógica");
         Calificacion c3 = new Calificacion(8, "Literatura");
 
-        Profesor profesor1 = new Profesor("Tara Hernandez", "contratado");
-        Profesor profesor2 = new Profesor("Gregory Walsh", "nombramiento");
-        Profesor profesor3 = new Profesor("Kevin Page", "nombramiento");
+        Ciuadad profesor1 = new Ciuadad("Tara Hernandez", "contratado");
+        Ciuadad profesor2 = new Ciuadad("Gregory Walsh", "nombramiento");
+        Ciuadad profesor3 = new Ciuadad("Kevin Page", "nombramiento");
 
         c1.establecerProfesor(profesor1);
         c2.establecerProfesor(profesor2);

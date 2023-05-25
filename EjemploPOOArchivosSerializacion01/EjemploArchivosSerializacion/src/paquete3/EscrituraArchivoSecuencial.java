@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import paquete1.Calificacion;
-import paquete1.Profesor;
+import paquete1.Ciuadad;
 
 public class EscrituraArchivoSecuencial {
 

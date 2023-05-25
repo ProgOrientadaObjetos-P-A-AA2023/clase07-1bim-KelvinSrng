@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquete2;
+package paquete5;
 
 import java.io.EOFException;
 import java.io.File;
@@ -66,7 +66,7 @@ public class LecturaArchivoSecuencial {
         }
     }
 
-    public ArrayList<Ciuadad> obtenerProfesores() {
+    public ArrayList<Ciuadad> obtenerHospital() {
         return profesores;
     }
 
@@ -76,13 +76,14 @@ public class LecturaArchivoSecuencial {
 
     @Override
     public String toString() {
-        String cadena = "Lista de Profesores\n";
-        for (int i = 0; i < obtenerProfesores().size(); i++) {
-            Ciuadad p = obtenerProfesores().get(i);
-            cadena = String.format("%s(%d) %s-%s\n", cadena,
-                    i + 1,
-                    p.obtenerNombre(),
-                    p.obtenerTipo());
+        String cadena = "Hospitales:\n";
+        for (int i = 0; i < obtenerListaCalificaciones().size(); i++) {
+            Calificacion p = obtenerListaCalificaciones().get(i);
+            cadena = String.format("%s%s-%.2f-(%s-%s)\n", cadena,
+                    p.obtenerNombreMateria(),
+                    p.obtenerNota(),
+                    p.obtenerProfesor().obtenerNombre(),
+                    p.obtenerProfesor().obtenerTipo());
         }
 
         return cadena;

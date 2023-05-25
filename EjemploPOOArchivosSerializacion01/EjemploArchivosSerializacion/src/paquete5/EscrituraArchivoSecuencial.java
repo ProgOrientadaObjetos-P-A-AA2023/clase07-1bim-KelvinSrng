@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paquete2;
+package paquete5;
 
+import paquete2.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -19,21 +20,21 @@ public class EscrituraArchivoSecuencial {
 
     private String nombreArchivo;
     private ObjectOutputStream salida; 
-    private Ciuadad registroProfesor;
-    private ArrayList<Ciuadad> listaProfesores;
+    private Ciuadad ciudad;
+    private ArrayList<Ciuadad> hospital;
 
     public EscrituraArchivoSecuencial(String nombreArc) {
         nombreArchivo = nombreArc;
-        establecerListaProfesores(); // obtener los valores (objetos)
+        establecerHospital(); // obtener los valores (objetos)
                                     // que tiene el archivo.
         try // abre el archivo
         {
             salida = new ObjectOutputStream(
                     new FileOutputStream(nombreArchivo));
             // proceso para ingresar nuevamente los valores del archivo
-            if (obtenerListaProfesores().size() > 0) {
-                for (int i = 0; i < obtenerListaProfesores().size(); i++) {
-                    establecerRegistroProfesor(obtenerListaProfesores().get(i));
+            if (obtenerHospital().size() > 0) {
+                for (int i = 0; i < obtenerHospital().size(); i++) {
+                    establecerCiudad(obtenerHospital().get(i));
                     establecerSalida();
                 }
             }
@@ -47,13 +48,13 @@ public class EscrituraArchivoSecuencial {
         nombreArchivo = n;
     }
 
-    public void establecerRegistroProfesor(Ciuadad p) {
-        registroProfesor = p;
+    public void establecerCiudad(Ciuadad p) {
+        ciudad = p;
     }
 
     public void establecerSalida() {
         try {
-            salida.writeObject(registroProfesor); // envía el registro como 
+            salida.writeObject(ciudad); // envía el registro como 
                                                   // objeto al archivo
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
@@ -62,19 +63,19 @@ public class EscrituraArchivoSecuencial {
 
     // en el atributo listaProfesores obtenemos los registros 
     // del archivo
-    public void establecerListaProfesores() {
+    public void establecerHospital() {
         LecturaArchivoSecuencial l = 
                 new LecturaArchivoSecuencial(obtenerNombreArchivo());
         l.establecerProfesores();
-        listaProfesores = l.obtenerProfesores();
+        hospital = l.obtenerHospital();
     }
 
     public String obtenerNombreArchivo(){
         return nombreArchivo;
     }
     
-    public ArrayList<Ciuadad> obtenerListaProfesores() {
-        return listaProfesores;
+    public ArrayList<Ciuadad> obtenerHospital() {
+        return hospital;
     }
 
     public ObjectOutputStream obtenerSalida(){

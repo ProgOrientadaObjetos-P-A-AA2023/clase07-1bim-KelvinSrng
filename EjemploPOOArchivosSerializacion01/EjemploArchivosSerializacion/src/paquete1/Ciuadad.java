@@ -7,11 +7,11 @@ package paquete1;
 
 import java.io.Serializable;
 
-public class Profesor implements Serializable {
+public class Ciuadad implements Serializable {
     private String nombre;
     private String tipo;
     
-    public Profesor(String n, String t){
+    public Ciuadad(String n, String t){
         nombre = n;
         tipo = t;
     }

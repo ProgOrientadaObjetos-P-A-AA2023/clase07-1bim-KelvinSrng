@@ -11,7 +11,7 @@ public class Calificacion implements Serializable {
 
     private double nota;
     private String nombreMateria;
-    private Profesor profesor;
+    private Ciuadad profesor;
 
     public Calificacion(double n, String nombre) {
         nota = n;
@@ -27,7 +27,7 @@ public class Calificacion implements Serializable {
         nombreMateria = n;
     }
     
-    public void establecerProfesor(Profesor n) {
+    public void establecerProfesor(Ciuadad n) {
         profesor = n;
     }
 
@@ -39,7 +39,7 @@ public class Calificacion implements Serializable {
         return nombreMateria;
     }
     
-    public Profesor obtenerProfesor() {
+    public Ciuadad obtenerProfesor() {
         return profesor;
     }
 
