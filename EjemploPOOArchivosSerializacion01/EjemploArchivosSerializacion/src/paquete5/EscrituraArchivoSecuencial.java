@@ -1,16 +1,9 @@
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete5;
 
-import paquete2.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import paquete1.Ciuadad;
 
 /**
  *
@@ -20,22 +13,25 @@ public class EscrituraArchivoSecuencial {
 
     private String nombreArchivo;
     private ObjectOutputStream salida; 
-    private Ciuadad ciudad;
-    private ArrayList<Ciuadad> hospital;
+    private Hospital registroHospital;
+    private ArrayList<Hospital> listaHospitales;
 
     public EscrituraArchivoSecuencial(String nombreArc) {
+        
         nombreArchivo = nombreArc;
-        establecerHospital(); // obtener los valores (objetos)
+        establecerListaHospitales(); // obtener los valores (objetos)
                                     // que tiene el archivo.
         try // abre el archivo
         {
             salida = new ObjectOutputStream(
                     new FileOutputStream(nombreArchivo));
             // proceso para ingresar nuevamente los valores del archivo
-            if (obtenerHospital().size() > 0) {
-                for (int i = 0; i < obtenerHospital().size(); i++) {
-                    establecerCiudad(obtenerHospital().get(i));
+            if (obtenerListaHospitales().size() > 0) {
+                for (int i = 0; i < obtenerListaHospitales().size(); i++) {
+                    establecerHospital(obtenerListaHospitales().get(i));
+                    
                     establecerSalida();
+                    
                 }
             }
         } // fin de try
@@ -48,13 +44,15 @@ public class EscrituraArchivoSecuencial {
         nombreArchivo = n;
     }
 
-    public void establecerCiudad(Ciuadad p) {
-        ciudad = p;
+    public void establecerHospital(Hospital h) {
+        
+        registroHospital = h;
+        
     }
 
     public void establecerSalida() {
         try {
-            salida.writeObject(ciudad); // envía el registro como 
+            salida.writeObject(registroHospital); // envía el registro como 
                                                   // objeto al archivo
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
@@ -63,19 +61,20 @@ public class EscrituraArchivoSecuencial {
 
     // en el atributo listaProfesores obtenemos los registros 
     // del archivo
-    public void establecerHospital() {
+    public void establecerListaHospitales() {
         LecturaArchivoSecuencial l = 
                 new LecturaArchivoSecuencial(obtenerNombreArchivo());
-        l.establecerProfesores();
-        hospital = l.obtenerHospital();
+        
+        l.establecerHospital();
+        listaHospitales = l.obtenerHospital();
     }
 
     public String obtenerNombreArchivo(){
         return nombreArchivo;
     }
     
-    public ArrayList<Ciuadad> obtenerHospital() {
-        return hospital;
+    public ArrayList<Hospital> obtenerListaHospitales() {
+        return listaHospitales;
     }
 
     public ObjectOutputStream obtenerSalida(){

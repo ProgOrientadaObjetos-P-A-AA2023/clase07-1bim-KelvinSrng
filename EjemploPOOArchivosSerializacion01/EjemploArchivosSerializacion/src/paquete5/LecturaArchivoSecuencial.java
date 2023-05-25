@@ -1,29 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete5;
 
+import paquete5.*;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-
 import java.util.ArrayList;
-import paquete1.Ciuadad;
 
 public class LecturaArchivoSecuencial {
 
     private ObjectInputStream entrada;
-    private ArrayList<Ciuadad> profesores;
+    private ArrayList<Hospital> hospital;
     private String nombreArchivo;
+
 
     public LecturaArchivoSecuencial(String n) {
         nombreArchivo = n;
-        File f = new File(nombreArchivo);
-        if (f.exists()) {
+        File file = new File(obtenerNombreArchivo());
+        if (file.exists()) {
             try // abre el archivo
             {
                 entrada = new ObjectInputStream(
@@ -38,17 +33,17 @@ public class LecturaArchivoSecuencial {
     public void establecerNombreArchivo(String n) {
         nombreArchivo = n;
     }
-
-    public void establecerProfesores() {
+    
+    public void establecerHospital() {
         // 
-        profesores = new ArrayList<>();
+        hospital = new ArrayList<>();
         File f = new File(obtenerNombreArchivo());
         if (f.exists()) {
 
             while (true) {
                 try {
-                    Ciuadad registro = (Ciuadad) entrada.readObject();
-                    profesores.add(registro);
+                    Hospital registro = (Hospital) entrada.readObject();
+                    hospital.add(registro);
                 } catch (EOFException endOfFileException) {
                     return; // se llegó al fin del archivo
                     // se puede usar el break;
@@ -66,27 +61,41 @@ public class LecturaArchivoSecuencial {
         }
     }
 
-    public ArrayList<Ciuadad> obtenerHospital() {
-        return profesores;
+    
+    public ArrayList<Hospital> obtenerHospital() {
+        
+        return hospital;
+        
     }
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
     }
+    
 
     @Override
     public String toString() {
-        String cadena = "Hospitales:\n";
-        for (int i = 0; i < obtenerListaCalificaciones().size(); i++) {
-            Calificacion p = obtenerListaCalificaciones().get(i);
-            cadena = String.format("%s%s-%.2f-(%s-%s)\n", cadena,
-                    p.obtenerNombreMateria(),
-                    p.obtenerNota(),
-                    p.obtenerProfesor().obtenerNombre(),
-                    p.obtenerProfesor().obtenerTipo());
+        String cadena = "Lista de Hospitales\n";
+        for (int i = 0; i < obtenerHospital().size(); i++) {
+            Hospital h = obtenerHospital().get(i);
+            
+            cadena = String.format("%s \n"
+                    + "Nombre: %s\n"
+                    + "Numero de Camas: %d\n"
+                    + "Presupuesto: %.2f\n"
+                    + "Ciudad: %s\n"
+                    + "Provincia: %s\n", 
+                    cadena,
+                    
+                    h.obtenerNombre(),
+                    h.obtenerNumeroCamas(),
+                    h.obtenerPresupuesto(),
+                    h.obtenerCiudad().obtenerNombre(),
+                    h.obtenerCiudad().obtenerProvincia());
         }
 
         return cadena;
+        
     }
 
     // cierra el archivo y termina la aplicación
@@ -103,4 +112,5 @@ public class LecturaArchivoSecuencial {
             System.exit(1);
         } // fin de catch
     } // fin del método cerrarArchivo
+
 }

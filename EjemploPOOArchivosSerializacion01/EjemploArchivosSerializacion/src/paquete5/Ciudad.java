@@ -4,17 +4,19 @@
  */
 package paquete5;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jhonder
  */
-public class Ciudad {
+public class Ciudad implements Serializable{
     private String nombre;
     private String provincia;
     
-    public Ciudad(String n, String prv) {
+    public Ciudad(String n, String prov) {
         nombre = n;
-        provincia = prv;
+        provincia = prov;
     }
     
 
